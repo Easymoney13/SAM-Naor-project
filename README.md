@@ -15,13 +15,15 @@ This project creates one segmented image using "SAM" (segemnt anything model by 
     - `stability_score` - `[float]` - an additional measure of mask quality
     - `crop_box` - `List[int]` - the crop of the image used to generate this mask in `xywh` format
 ## Use similar masks and weights
-    So firstly we should put in a list all the similar masks between all the image segmentations according to the values of 'area', 'bbox','point_coords'
-    (allow 5% diffrent between "similar" masks), and now we should iterate over every group of similar masks and create one combined mask from it.
-    The key is to use the 'predicted_iou' which it is the prediction for the quality of the mask; so we should take the relative part of each mask from the
-    group and use weights for every mask.
+    So firstly we should put in a list all the similar masks between all the image segmentations according to the values 
+    of 'area', 'bbox','point_coords' (allow 5% diffrent between "similar" masks), and now we should iterate over every group
+    of similar masks and create one combined mask from it.
+    The key is to use the 'predicted_iou' which it is the prediction for the quality of the mask; so we should take
+    the relative part of each mask from the group and use weights for every mask.
     Then we should combine all similar masks into one using 'weights';
  ## How to really combine masks
         We need to create a combination of multiple `[np.ndarray]`of `bool` type.
-        So i changed the type of the np.ndarray to int's (1/0 - true/false) and not boolean, than a multiple any np.ndarray of each mask according to the matching
-        cell in `weights` and created combined np.ndarray of int's, to return it back to be `bool` type if the cell equal or greater then 0.5 the cell will be true else it's false.
+        So i changed the type of the np.ndarray to int's (1/0 - true/false) and not boolean, than a multiple any np.ndarray
+        of each mask according to the matching cell in `weights` and created combined np.ndarray of int's, to return it back to
+        be `bool` type if the cell equal or greater then 0.5 the cell will be true else it's false.
         So now we have combined masks of all segmentations.
