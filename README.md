@@ -1,6 +1,6 @@
 <h1 align="center">SAM PROJECT</h1>
 This project creates one segmented image using "SAM" (segemnt anything model by facebook ) from a video
-## info
+### info
   When we create a video even if it seem to our eyes a constant video there will be some changes in the video that the computer will recognize;
   SAM model is a super powerful model that can take any kind of photo and create a segement image from it.
   The project i made takes all the frames from a disired video and segemnt them, then combine all the segmented images into one that will be the summary of all images.
